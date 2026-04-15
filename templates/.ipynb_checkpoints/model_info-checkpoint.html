@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<title>Model Info</title>
+<link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+
+<div class="sidebar">
+<h2>✈ SkyPredict</h2>
+<a href="/">Dashboard</a>
+<a href="/predict_page">Prediction</a>
+<a href="/model_info">Model Info</a>
+</div>
+
+<div class="main">
+
+<div class="card">
+<h2>Model Overview</h2>
+<p>Two-stage ML system for predicting flight delays.</p>
+</div>
+
+<div class="card">
+<h3>Models</h3>
+<p>Stage 1: {{ model1 }}</p>
+<p>Stage 2: {{ model2 }}</p>
+</div>
+
+<div class="card">
+<h3>Performance</h3>
+<p>Accuracy: {{ accuracy }}</p>
+<p>Precision: {{ precision }}</p>
+<p>Recall: {{ recall }}</p>
+</div>
+
+<div class="card">
+<h3>Features</h3>
+<ul>
+{% for f in features %}
+<li>{{ f }}</li>
+{% endfor %}
+</ul>
+</div>
+
+<div class="card">
+<h3>How It Works</h3>
+<p>1. Input flight details</p>
+<p>2. Classifier predicts delay</p>
+<p>3. Regression predicts delay minutes</p>
+</div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<title>Flight Prediction</title>
+
+<link rel="stylesheet" href="/static/css/style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+
+<link rel="stylesheet"
+href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"/>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+<h2>✈ SkyPredict</h2>
+<a href="/">Dashboard</a>
+<a href="/predict_page">Prediction</a>
+<a href="/model_info">Model Info</a>
+</div>
+
+<div class="main">
+
+<div class="card">
+
+<h2>Flight Delay Prediction</h2>
+
+<form id="predictForm">
+
+<div class="form-row">
+<input id="ORIGIN" list="airportList" placeholder="Origin">
+<input id="DEST" list="airportList" placeholder="Destination">
+</div>
+
+<div class="form-row">
+<input type="number" id="DISTANCE" placeholder="Distance">
+<input type="time" id="CRS_DEP_TIME">
+</div>
+
+<div class="form-row">
+<input type="number" id="DAY_OF_WEEK" placeholder="Day">
+<input id="OP_UNIQUE_CARRIER" placeholder="Carrier">
+</div>
+
+<input id="TAIL_NUM" placeholder="Tail Number">
+
+<datalist id="airportList">
+{% for airport in airports %}
+<option value="{{ airport }}">
+{% endfor %}
+</datalist>
+
+<button type="submit">Predict</button>
+
+</form>
+
+</div>
+
+<!-- KPI -->
+
+<div class="kpi-row">
+<div class="kpi-card"><p>Delay %</p><h3 id="probCard">-</h3></div>
+<div class="kpi-card"><p>Delay (min)</p><h3 id="delayCard">-</h3></div>
+<div class="kpi-card"><p>Distance</p><h3 id="distanceCard">-</h3></div>
+</div>
+
+<!-- Gauge -->
+
+<div class="card">
+<h3>Delay Probability</h3>
+<canvas id="gaugeChart"></canvas>
+
+<div class="gauge-legend">
+<span class="low">Low</span>
+<span class="mid">Medium</span>
+<span class="high">High</span>
+</div>
+
+<p id="statusText" class="status-text"></p>
+</div>
+
+<!-- Map -->
+
+<div class="card">
+<h3>Flight Route</h3>
+<div id="map"></div>
+</div>
+
+<!-- Chart -->
+
+<div class="card">
+<h3>Prediction vs Actual</h3>
+<canvas id="compareChart"></canvas>
+<p id="comparisonText"></p>
+</div>
+
+<!-- Info -->
+
+<div class="card">
+<h3>Flight Info</h3>
+<p><b>Route:</b> <span id="routeText"></span></p>
+<p><b>Carrier:</b> <span id="carrierText"></span></p>
+<p><b>Distance:</b> <span id="distanceText"></span></p>
+<p><b>Departure:</b> <span id="timeText"></span></p>
+<p><b>Delay:</b> <span id="delayText"></span></p>
+</div>
+
+</div>
+
+<script src="/static/js/main.js"></script>
+
+</body>
+</html>
